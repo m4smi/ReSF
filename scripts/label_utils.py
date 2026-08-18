@@ -28,11 +28,12 @@ def pair_margins(pos, half, rank, plank_idx, r, h, s):
     out = []
     for a, b in itertools.combinations(range(len(pos)), 2):
         upper, lower = (a, b) if pos[a][2] > pos[b][2] else (b, a)
-        
+       
+        # if it's between plank and cube, skip (always safe)
         if not is_wrong_order(upper, lower, rank, plank_idx):
             out.append(1.0)
             continue
-        # when lowering a cube onto a stack, if side by side, gap < 0.0 (safe)
+        # gap between 2 cubes
         gap = (pos[upper][2] - half[upper]) - (pos[lower][2] + half[lower])
         #if gap < -PEN_TOL:
         #    out.append(1.0)
@@ -70,7 +71,7 @@ def get_labels(env, align_r, clear_h):
 
 def labels_from_arrays(obj_pos, half_z, rank, plank_idx, object_size,
                        align_r, clear_h):
-    """Re-label a recorded episode offline.
+    """Re-label a recorded episode offline (for data audit).
     Params:
         obj_pos: [T, N, 3]
     """
