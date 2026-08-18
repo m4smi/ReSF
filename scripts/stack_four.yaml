@@ -1,0 +1,11 @@
+defaults:
+  env: 'PickRed_3Distractors_Dense-v1'
+  data_dir: 'dataset/stack_four'
+  name: 'stack_four'
+  size: 128
+  disp_size: 256
+  fps: 20.0
+  plank_h: 0.015
+  align_r: 2.0
+  # 0.0 is close to MUJUCO'PEN gap
+  clear_h: 0.01 #def: 0.0
